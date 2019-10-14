@@ -1,19 +1,18 @@
 package com.nelioalves.cursomc.service;
 
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.nelioalves.cursomc.domain.Produto;
 import com.nelioalves.cursomc.exception.ObjectNotFoundException;
 import com.nelioalves.cursomc.repository.ProdutoRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ProdutoService {
 
-	@Autowired
-	private ProdutoRepository produtoRepository;
+	private final ProdutoRepository produtoRepository;
 	
 	public Produto find(Integer id){
 		Optional<Produto> produtos = produtoRepository.findById(id);

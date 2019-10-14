@@ -1,23 +1,22 @@
 package com.nelioalves.cursomc.resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.nelioalves.cursomc.domain.Produto;
 import com.nelioalves.cursomc.service.ProdutoService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/produtos")
+@RequiredArgsConstructor
 public class ProdutoResource {
+
+	private final ProdutoService produtoService;
 	
-	@Autowired
-	private ProdutoService produtoService;
-	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> find(@PathVariable Integer id){
 		Produto produto = produtoService.find(id);
 		
